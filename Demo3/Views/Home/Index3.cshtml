@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo2</title>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery.signalR-1.0.0.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+            debugger;
+            var hub = $.connection.gameHub;
+            hub.client.hello = function (message) {
+                $("#results").append('<strong>' + message + '</strong>');
+            }
+
+            $.connection.hub.start().done(function () {
+                hub.server.hello();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="results">
+    </div>
+</body>
+</html>
